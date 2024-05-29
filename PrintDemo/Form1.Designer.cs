@@ -47,6 +47,12 @@
             comboBoxMargin = new ComboBox();
             label8 = new Label();
             comboBoxSide = new ComboBox();
+            txtCustomWidth = new TextBox();
+            txtCustomHeight = new TextBox();
+            label9 = new Label();
+            label10 = new Label();
+            label11 = new Label();
+            txtDPI = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pdfView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numCopies).BeginInit();
             SuspendLayout();
@@ -130,6 +136,7 @@
             comboBoxPrinters.Name = "comboBoxPrinters";
             comboBoxPrinters.Size = new Size(231, 25);
             comboBoxPrinters.TabIndex = 15;
+            comboBoxPrinters.SelectedIndexChanged += comboBoxPrinters_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -144,16 +151,17 @@
             // comboBoxPGSize
             // 
             comboBoxPGSize.FormattingEnabled = true;
-            comboBoxPGSize.Location = new Point(159, 409);
+            comboBoxPGSize.Location = new Point(159, 465);
             comboBoxPGSize.Name = "comboBoxPGSize";
             comboBoxPGSize.Size = new Size(231, 25);
             comboBoxPGSize.TabIndex = 17;
+            comboBoxPGSize.SelectedIndexChanged += comboBoxPGSize_SelectedIndexChanged;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12.8301888F);
-            label4.Location = new Point(30, 409);
+            label4.Location = new Point(30, 465);
             label4.Name = "label4";
             label4.Size = new Size(92, 25);
             label4.TabIndex = 18;
@@ -163,7 +171,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12.8301888F);
-            label5.Location = new Point(30, 455);
+            label5.Location = new Point(30, 511);
             label5.Name = "label5";
             label5.Size = new Size(108, 25);
             label5.TabIndex = 20;
@@ -172,7 +180,7 @@
             // comboBoxOrientation
             // 
             comboBoxOrientation.FormattingEnabled = true;
-            comboBoxOrientation.Location = new Point(159, 455);
+            comboBoxOrientation.Location = new Point(159, 511);
             comboBoxOrientation.Name = "comboBoxOrientation";
             comboBoxOrientation.Size = new Size(231, 25);
             comboBoxOrientation.TabIndex = 19;
@@ -199,7 +207,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12.8301888F);
-            label7.Location = new Point(30, 503);
+            label7.Location = new Point(30, 559);
             label7.Name = "label7";
             label7.Size = new Size(73, 25);
             label7.TabIndex = 24;
@@ -208,7 +216,7 @@
             // comboBoxMargin
             // 
             comboBoxMargin.FormattingEnabled = true;
-            comboBoxMargin.Location = new Point(159, 503);
+            comboBoxMargin.Location = new Point(159, 559);
             comboBoxMargin.Name = "comboBoxMargin";
             comboBoxMargin.Size = new Size(231, 25);
             comboBoxMargin.TabIndex = 23;
@@ -217,7 +225,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12.8301888F);
-            label8.Location = new Point(30, 548);
+            label8.Location = new Point(30, 604);
             label8.Name = "label8";
             label8.Size = new Size(120, 25);
             label8.TabIndex = 26;
@@ -226,16 +234,73 @@
             // comboBoxSide
             // 
             comboBoxSide.FormattingEnabled = true;
-            comboBoxSide.Location = new Point(159, 548);
+            comboBoxSide.Location = new Point(159, 604);
             comboBoxSide.Name = "comboBoxSide";
             comboBoxSide.Size = new Size(231, 25);
             comboBoxSide.TabIndex = 25;
+            // 
+            // txtCustomWidth
+            // 
+            txtCustomWidth.Location = new Point(218, 661);
+            txtCustomWidth.Name = "txtCustomWidth";
+            txtCustomWidth.Size = new Size(172, 25);
+            txtCustomWidth.TabIndex = 27;
+            // 
+            // txtCustomHeight
+            // 
+            txtCustomHeight.Location = new Point(218, 713);
+            txtCustomHeight.Name = "txtCustomHeight";
+            txtCustomHeight.Size = new Size(172, 25);
+            txtCustomHeight.TabIndex = 28;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12.8301888F);
+            label9.Location = new Point(30, 661);
+            label9.Name = "label9";
+            label9.Size = new Size(132, 25);
+            label9.TabIndex = 29;
+            label9.Text = "Custom Width";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 12.8301888F);
+            label10.Location = new Point(32, 713);
+            label10.Name = "label10";
+            label10.Size = new Size(137, 25);
+            label10.TabIndex = 30;
+            label10.Text = "Custom Height";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 12.8301888F);
+            label11.Location = new Point(32, 415);
+            label11.Name = "label11";
+            label11.Size = new Size(103, 25);
+            label11.TabIndex = 31;
+            label11.Text = "Printer DPI";
+            // 
+            // txtDPI
+            // 
+            txtDPI.Location = new Point(159, 415);
+            txtDPI.Name = "txtDPI";
+            txtDPI.Size = new Size(231, 25);
+            txtDPI.TabIndex = 32;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 929);
+            Controls.Add(txtDPI);
+            Controls.Add(label11);
+            Controls.Add(label10);
+            Controls.Add(label9);
+            Controls.Add(txtCustomHeight);
+            Controls.Add(txtCustomWidth);
             Controls.Add(label8);
             Controls.Add(comboBoxSide);
             Controls.Add(label7);
@@ -286,5 +351,11 @@
         private ComboBox comboBoxMargin;
         private Label label8;
         private ComboBox comboBoxSide;
+        private TextBox txtCustomWidth;
+        private TextBox txtCustomHeight;
+        private Label label9;
+        private Label label10;
+        private Label label11;
+        private TextBox txtDPI;
     }
 }
