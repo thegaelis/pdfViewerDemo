@@ -25,3 +25,31 @@ C:\Users\thaihq\source\repos\PrintDemo\PrintDemo\bin\Debug\net8.0-windows\Micros
 C:\Users\thaihq\source\repos\PrintDemo\PrintDemo\bin\Debug\net8.0-windows\x64\pdfium.dll
 C:\Users\thaihq\source\repos\PrintDemo\PrintDemo\bin\Debug\net8.0-windows\PdfiumViewer.dll
 C:\Users\thaihq\source\repos\PrintDemo\PrintDemo\bin\Debug\net8.0-windows\nl\PdfiumViewer.resources.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\runtimes\win-x86\native\WebView2Loader.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\runtimes\win-x64\native\WebView2Loader.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\PrintDemo.exe
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\x64\pdfium.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\PrintDemo.deps.json
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\PrintDemo.runtimeconfig.json
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\PrintDemo.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\PrintDemo.pdb
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Core.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.WinForms.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\Microsoft.Web.WebView2.Wpf.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\PdfiumViewer.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\bin\Debug\net8.0-windows\nl\PdfiumViewer.resources.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.csproj.AssemblyReference.cache
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.Form1.resources
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.csproj.GenerateResource.cache
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.GeneratedMSBuildEditorConfig.editorconfig
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.AssemblyInfoInputs.cache
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.AssemblyInfo.cs
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.csproj.CoreCompileInputs.cache
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.sourcelink.json
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.csproj.Up2Date
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\refint\PrintDemo.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.pdb
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.genruntimeconfig.cache
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\ref\PrintDemo.dll

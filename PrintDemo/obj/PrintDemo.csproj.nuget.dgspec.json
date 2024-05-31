@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\thaihq\\source\\repos\\PrintDemo\\PrintDemo\\PrintDemo.csproj": {}
+    "D:\\MyWork\\C# Winform\\pdfViewerDemo\\PrintDemo\\PrintDemo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\thaihq\\source\\repos\\PrintDemo\\PrintDemo\\PrintDemo.csproj": {
+    "D:\\MyWork\\C# Winform\\pdfViewerDemo\\PrintDemo\\PrintDemo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\thaihq\\source\\repos\\PrintDemo\\PrintDemo\\PrintDemo.csproj",
+        "projectUniqueName": "D:\\MyWork\\C# Winform\\pdfViewerDemo\\PrintDemo\\PrintDemo.csproj",
         "projectName": "PrintDemo",
-        "projectPath": "C:\\Users\\thaihq\\source\\repos\\PrintDemo\\PrintDemo\\PrintDemo.csproj",
+        "projectPath": "D:\\MyWork\\C# Winform\\pdfViewerDemo\\PrintDemo\\PrintDemo.csproj",
         "packagesPath": "C:\\Users\\thaihq\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\thaihq\\source\\repos\\PrintDemo\\PrintDemo\\obj\\",
+        "outputPath": "D:\\MyWork\\C# Winform\\pdfViewerDemo\\PrintDemo\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\WorkSoftware\\tools\\NuGetPackages"

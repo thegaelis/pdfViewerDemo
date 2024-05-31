@@ -259,25 +259,25 @@
             label9.Font = new Font("Segoe UI", 12.8301888F);
             label9.Location = new Point(30, 661);
             label9.Name = "label9";
-            label9.Size = new Size(132, 25);
+            label9.Size = new Size(181, 25);
             label9.TabIndex = 29;
-            label9.Text = "Custom Width";
+            label9.Text = "Custom Width (mm)";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI", 12.8301888F);
-            label10.Location = new Point(32, 713);
+            label10.Location = new Point(30, 713);
             label10.Name = "label10";
-            label10.Size = new Size(137, 25);
+            label10.Size = new Size(186, 25);
             label10.TabIndex = 30;
-            label10.Text = "Custom Height";
+            label10.Text = "Custom Height (mm)";
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12.8301888F);
-            label11.Location = new Point(32, 415);
+            label11.Location = new Point(30, 415);
             label11.Name = "label11";
             label11.Size = new Size(103, 25);
             label11.TabIndex = 31;
@@ -289,6 +289,7 @@
             txtDPI.Name = "txtDPI";
             txtDPI.Size = new Size(231, 25);
             txtDPI.TabIndex = 32;
+            txtDPI.KeyDown += txtDPI_KeyDown;
             // 
             // Form1
             // 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing.Printing;
 using System.IO;
 using System.Windows.Forms;
@@ -22,7 +22,7 @@ namespace PrintDemo
         private async void Form1_Load(object sender, EventArgs e)
         {
             numCopies.Minimum = 1;
-            DisablePrintControls();
+            SetPrintControlsState(false);
             HideProgressBar();
             HideCustomSizeControls();
 
@@ -46,19 +46,19 @@ namespace PrintDemo
         // Handle button logic when clicked
         private async void btnSelection_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "PDF Files (*.pdf)|*.pdf"
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-                string fileExtension = Path.GetExtension(filePath).ToLower();
-
-                if (fileExtension == ".pdf")
+                if (Path.GetExtension(filePath).ToLower() == ".pdf")
                 {
                     string pdfPath = $"file:///{filePath}";
                     pdfView.Source = new Uri(pdfPath);
-                    EnablePrintControls();
+                    SetPrintControlsState(true);
                 }
                 else
                 {
@@ -96,7 +96,6 @@ namespace PrintDemo
                     int currentPage = 0;
 
                     PrintDocument printDocument = document.CreatePrintDocument();
-
                     printDocument.PrinterSettings.PrinterName = printerName;
                     printDocument.PrinterSettings.Copies = (short)numCopies.Value;
                     printDocument.DefaultPageSettings.Landscape = GetSelectedOrientation();
@@ -107,7 +106,8 @@ namespace PrintDemo
                     printDocument.PrinterSettings.Duplex = GetSelectedPrintSide();
 
                     ShowProgressBar();
-                    DisablePrintControls();
+                    SetPrintControlsState(false);
+
                     // Subscribe to the PrintPage event to track printing progress and page number
                     printDocument.PrintPage += (sender, e) =>
                     {
@@ -120,7 +120,7 @@ namespace PrintDemo
                     printDocument.Print();
 
                     MessageBox.Show("Print succeeded", "Print", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    EnablePrintControls();
+                    SetPrintControlsState(true);
                     HideProgressBar();
                 }
             }
@@ -138,20 +138,20 @@ namespace PrintDemo
             switch (comboBoxPGSize.SelectedItem.ToString())
             {
                 case "A4":
-                    selectedSize = new PaperSize("A4", 576, 1);
+                    selectedSize = new PaperSize("A4", 827, 1169); // 210 mm x 297 mm converted to 1/100 inches
                     break;
                 case "A3":
-                    selectedSize = new PaperSize("A3", 1169, 1654);
+                    selectedSize = new PaperSize("A3", 1169, 1654); // 297 mm x 420 mm converted to 1/100 inches
                     break;
                 case "Letter":
-                    selectedSize = new PaperSize("Letter", 850, 1100);
+                    selectedSize = new PaperSize("Letter", 850, 1100); // 8.5 in x 11 in converted to 1/100 inches
                     break;
                 case "Legal":
-                    selectedSize = new PaperSize("Legal", 850, 1400);
+                    selectedSize = new PaperSize("Legal", 850, 1400); // 8.5 in x 14 in converted to 1/100 inches
                     break;
                 case "Custom":
-                    int width = ConvertMmToPoints(Int32.Parse(txtCustomWidth.Text));
-                    int height = ConvertMmToPoints(Int32.Parse(txtCustomHeight.Text));
+                    int width = ParseMm(Int32.Parse(txtCustomWidth.Text));
+                    int height = ParseMm(Int32.Parse(txtCustomHeight.Text));
                     selectedSize = new PaperSize("Custom", width, height);
                     break;
                 default:
@@ -159,21 +159,17 @@ namespace PrintDemo
                     break;
             }
 
-
             return selectedSize;
         }
 
-        // Convert millimeters to points
-        private int ConvertMmToPoints(int valueInMm)
+
+        // Parse mm to points
+        private int ParseMm(int mm)
         {
-            const double pointsPerInch = 72;
-            const double millimetersPerInch = 25.4;
-
-            double inches = valueInMm / millimetersPerInch;
-            double points = inches * pointsPerInch;
-
-            return (int)points;
+            double inches = mm / 25.4; // Convert mm to inches
+            return (int)Math.Ceiling(inches * 100); // Convert inches to 1/100 of an inch
         }
+
 
         // Get selected orientation
         private bool GetSelectedOrientation()
@@ -190,19 +186,73 @@ namespace PrintDemo
         // Get selected page margins
         private Margins GetSelectedPageMargins()
         {
-            switch (comboBoxMargin.SelectedItem.ToString())
+            return comboBoxMargin.SelectedItem.ToString() switch
             {
-                case "Narrow":
-                    return new Margins(10, 10, 10, 10); // 10 points on all sides
-                case "Wide":
-                    return new Margins(50, 50, 50, 50); // 50 points on all sides
-                case "No Margin":
-                    return new Margins(0, 0, 0, 0);
-                default: // Normal
-                    return new Margins(25, 25, 25, 25); // 25 points on all sides
+                "Narrow" => new Margins(10, 10, 10, 10), // 10 points on all sides
+                "Wide" => new Margins(50, 50, 50, 50), // 50 points on all sides
+                "No Margin" => new Margins(0, 0, 0, 0),
+                _ => new Margins(25, 25, 25, 25), // Normal (25 points on all sides)
+            };
+        }
+        // Get printer DPI
+        private int GetPrinterDPI()
+        {
+            if (comboBoxPrinters.SelectedItem == null)
+            {
+                MessageBox.Show("No printer selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+
+            PrinterSettings printerSettings = new PrinterSettings
+            {
+                PrinterName = comboBoxPrinters.SelectedItem.ToString()
+            };
+
+            return printerSettings.DefaultPageSettings.PrinterResolution.X;
+        }
+        private void SetPrinterDPI(int dpi)
+        {
+            if (comboBoxPrinters.SelectedItem == null)
+            {
+                MessageBox.Show("No printer selected.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            PrinterSettings printerSettings = new PrinterSettings
+            {
+                PrinterName = comboBoxPrinters.SelectedItem.ToString()
+            };
+
+            PrinterResolution customResolution = new PrinterResolution
+            {
+                Kind = PrinterResolutionKind.Custom,
+                X = dpi,
+                Y = dpi
+            };
+
+            bool resolutionSupported = false;
+            foreach (PrinterResolution resolution in printerSettings.PrinterResolutions)
+            {
+                if (resolution.Kind == PrinterResolutionKind.Custom &&
+                    resolution.X == dpi && resolution.Y == dpi)
+                {
+                    resolutionSupported = true;
+                    break;
+                }
+            }
+
+            if (resolutionSupported)
+            {
+                printerSettings.DefaultPageSettings.PrinterResolution = customResolution;
+                MessageBox.Show($"DPI set to {dpi}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"The specified DPI ({dpi}) is not supported by the selected printer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
+
 
         // Load installed printers
         private void LoadInstalledPrinters()
@@ -247,6 +297,7 @@ namespace PrintDemo
             comboBoxMargin.Items.Add("Normal");
             comboBoxMargin.Items.Add("Narrow");
             comboBoxMargin.Items.Add("Wide");
+            comboBoxMargin.Items.Add("No Margin");
             comboBoxMargin.SelectedIndex = 0; // Select "Normal" by default
         }
 
@@ -262,41 +313,23 @@ namespace PrintDemo
         // Update the progress bar during printing
         private void UpdateProgressBar(double progress)
         {
-            if (progress < 0) progress = 0;
-            else if (progress > 100) progress = 100;
-
+            progress = Math.Clamp(progress, 0, 100);
             printProgressBar.Value = (int)progress;
         }
 
-        // Disable print controls
-        private void DisablePrintControls()
+        // Set print controls state
+        private void SetPrintControlsState(bool isEnabled)
         {
-            btnPrint.Enabled = false;
-            numCopies.Enabled = false;
-            comboBoxOrientation.Enabled = false;
-            comboBoxPGSize.Enabled = false;
-            comboBoxPrinters.Enabled = false;
-            comboBoxMargin.Enabled = false;
-            comboBoxSide.Enabled = false;
-            txtDPI.Enabled = false;
-            txtCustomHeight.Enabled = false;
-            txtCustomWidth.Enabled = false;
-        }
-
-        // Enable print controls
-        private void EnablePrintControls()
-        {
-            btnPrint.Enabled = true;
-            numCopies.Enabled = true;
-            comboBoxOrientation.Enabled = true;
-            comboBoxPGSize.Enabled = true;
-            comboBoxPrinters.Enabled = true;
-            comboBoxMargin.Enabled = true;
-            comboBoxSide.Enabled = true;
-            txtDPI.Enabled = true;
-            txtCustomHeight.Enabled = true;
-            txtCustomWidth.Enabled = true;
-
+            btnPrint.Enabled = isEnabled;
+            numCopies.Enabled = isEnabled;
+            comboBoxOrientation.Enabled = isEnabled;
+            comboBoxPGSize.Enabled = isEnabled;
+            comboBoxPrinters.Enabled = isEnabled;
+            comboBoxMargin.Enabled = isEnabled;
+            comboBoxSide.Enabled = isEnabled;
+            txtDPI.Enabled = isEnabled;
+            txtCustomHeight.Enabled = isEnabled;
+            txtCustomWidth.Enabled = isEnabled;
         }
 
         // Hide custom size controls
@@ -346,15 +379,28 @@ namespace PrintDemo
 
         private void comboBoxPrinters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string selectedPrinter = comboBoxPrinters.SelectedItem.ToString();
-            PrinterSettings printerSettings = new PrinterSettings
+            int dpi = GetPrinterDPI();
+            if (dpi != -1) // Check if a valid DPI was returned
             {
-                PrinterName = selectedPrinter
-            };
+                txtDPI.Text = dpi.ToString();
+            }
+        }
 
-            // Get and display the current printer resolution
-            PrinterResolution currentResolution = printerSettings.DefaultPageSettings.PrinterResolution;
-            txtDPI.Text = currentResolution.X.ToString();
+        private void txtDPI_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true; // Prevent the beep sound on Enter key press
+
+                if (int.TryParse(txtDPI.Text, out int dpi))
+                {
+                    SetPrinterDPI(dpi);
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid DPI value.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
     }
 }

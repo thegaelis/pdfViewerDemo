@@ -1,0 +1,9 @@
+
+*.v2
+/.vs
+/PrintDemo/.vs
+PrintDemo/bin/Debug/net8.0-windows/PrintDemo.exe.WebView2/EBWebView/BrowserMetrics/BrowserMetrics-665062C3-6380.pma
+/PrintDemo/bin/Debug/net8.0-windows
+/PrintDemo/bin
+/PrintDemo/bin
+*.pma
