@@ -53,3 +53,4 @@ D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\refint\Pri
 D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.pdb
 D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.genruntimeconfig.cache
 D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\ref\PrintDemo.dll
+D:\MyWork\C# Winform\pdfViewerDemo\PrintDemo\obj\Debug\net8.0-windows\PrintDemo.Form2.resources
